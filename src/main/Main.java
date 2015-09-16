@@ -1,13 +1,15 @@
 package main;
 
+import map.Dungeon;
+
 public class Main {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Coucou");
-
+		Dungeon dungeon = new Dungeon();
+		dungeon.start();
 	}
 
 }
