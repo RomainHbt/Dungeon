@@ -1,3 +1,4 @@
+import static org.junit.Assert.*;
 import static org.junit.Assert.fail;
 import map.Dungeon;
 
@@ -21,7 +22,12 @@ public class DungeonTest {
 	
 	@Test
 	public void gameNotFinishedAtBeginning() {
-		fail("Not yet implemented");
+		assertFalse(dungeon.getPlayer().getCurrentRoom().getName().equals("Exit"));
+	}
+	
+	@Test
+	public void gameStartAtEntrance() {
+		assertFalse(dungeon.getPlayer().getCurrentRoom().getName().equals("Entrance"));
 	}
 
 }

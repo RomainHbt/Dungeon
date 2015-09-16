@@ -9,15 +9,20 @@ public class Dungeon {
 	public Dungeon(){
 		// ---------------- MAP CONSTRUCTION --------------
 		// Room generation
-		
+		Room exit = new Room("Exit");
+		Room entrance = new Room("Entrance");
 		
 		// Doors generation
 		
 		
 		// Player generation
-		this.player = new Player(null, 10);
+		this.player = new Player(entrance, 10);
 	}
 	
+	public Player getPlayer() {
+		return player;
+	}
+
 	public void startGame(){
 		do {
 			
@@ -30,14 +35,14 @@ public class Dungeon {
 	}
 	
 	public boolean gameIsFinished(){
-		return false; // A MODIFIER
+		return gameIsLost() || gameIsWon();
 	}
 	
 	public boolean gameIsLost(){
-		return false; // A MODIFIER
+		return player.getCurrentRoom().getName().equals("Trap") || player.getLifePoints() == 0;
 	}
 
 	public boolean gameIsWon(){
-		return false; // A MODIFIER
+		return player.getCurrentRoom().getName().equals("Exit");
 	}
 }
