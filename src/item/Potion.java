@@ -1,6 +1,6 @@
 package item;
 
-public class Potion {
+public class Potion extends Item{
 	private Integer lifeRestored;
 	
 	public Potion(Integer lifeRestored){

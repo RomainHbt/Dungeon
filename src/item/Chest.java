@@ -1,5 +1,9 @@
 package item;
 
-public class Chest {
-
+public class Chest extends Item{
+	private Key associatedKey;
+	
+	public Chest(Key associatedKey){
+		this.associatedKey = associatedKey;
+	}
 }
