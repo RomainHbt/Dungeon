@@ -8,14 +8,8 @@ import java.util.Map;
 public class Inventory{
 	private Map<String, Item> items;
 	
-	public Map<String, Item> getItems() {
-		return items;
-	}
-
-	public void setItems(Map<String, Item> items) {
-		this.items = items;
-	}
-
+	
+	
 	public Inventory(){
 		items = new HashMap<>();
 	}
@@ -24,4 +18,19 @@ public class Inventory{
 		this.items = items;
 	}
 	
+	
+	
+	
+	public void takeItem(Inventory destination, String itemName){
+		destination.addItem(itemName, items.get(itemName));
+		items.remove(itemName);
+	}
+	
+	public void addItem(String itemName, Item item){
+		items.put(itemName, item);
+	}
+	
+	public Item getItem(String itemName){
+		return items.get(itemName);
+	}
 }
