@@ -1,11 +1,24 @@
 package map;
 
+import entity.Player;
+
 public class Dungeon {
 	
-	public void start(){
-		// Rooms and doors initialisation
+	private Player player;
+	
+	public Dungeon(){
+		// ---------------- MAP CONSTRUCTION --------------
+		// Room generation
 		
-		// Game
+		
+		// Doors generation
+		
+		
+		// Player generation
+		this.player = new Player(null, 10);
+	}
+	
+	public void startGame(){
 		do {
 			
 		} while(!this.gameIsFinished());
