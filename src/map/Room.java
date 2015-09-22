@@ -3,6 +3,7 @@ package map;
 import item.Item;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,10 @@ public class Room {
 		return name;
 	}
 	
+	public Collection<Door> listDoors(){
+		return this.accessibleRooms.values();
+	}
+	
 	public boolean addItem(Item i){
 		return items.add(i);
 	}
@@ -41,6 +46,16 @@ public class Room {
 	
 	public boolean addDoor(String position, Door door){
 		return accessibleRooms.put(position, door) != null;
+	}
+
+	@Override
+	public String toString() {
+		String res = "Room Name : "+this.name+"\n";
+		res+= "Accessible doors :\n";
+		for (String door : this.accessibleRooms.keySet()) {
+			res += "\t- "+door+"\n";
+		}
+		return res;
 	}
 	
 }
