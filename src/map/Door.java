@@ -17,7 +17,25 @@ public class Door {
 	}
 	
 	public void go(Player p){
-		p.setCurrentRoom(exit);
+		if(p.getCurrentRoom() == this.exit){
+			p.setCurrentRoom(entrance);
+		} else {
+			p.setCurrentRoom(exit);
+		}
 	}
+
+	public Room getExit() {
+		return exit;
+	}
+
+	public Room getEntrance() {
+		return entrance;
+	}
+
+	public String getType() {
+		return type;
+	}
+	
+	
 
 }

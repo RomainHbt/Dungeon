@@ -55,7 +55,7 @@ public class Dungeon {
 		do {
 			System.out.println("You are in "+ player.getCurrentRoom().getName());
 			System.out.println("What do you want to do?");
-			System.out.println("> ");
+			System.out.print("> ");
 			interpretCommand(this.scanner.nextLine());
 		} while(!this.gameIsFinished());
 		
@@ -68,7 +68,7 @@ public class Dungeon {
 	}
 	
 	public void interpretCommand(String command){
-		String[] parts = command.split(" ");
+		String[] parts = command.split(":");
 		switch(parts[0]){
 			case "Describe":
 				System.out.println(this.player.getCurrentRoom().toString());

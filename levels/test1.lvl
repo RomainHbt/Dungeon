@@ -1,9 +1,11 @@
 # DUNGEON LEVEL CONFIG
+# Rooms
 Entrance
 Intersection
 Trap
 Exit
 ------
+# Doors
 Entrance,Intersection,normal,Devant
 Intersection,Trap,normal,Gauche
 Intersection,Exit,normal,Droite
