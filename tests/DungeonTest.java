@@ -1,5 +1,11 @@
 import static org.junit.Assert.*;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 import map.Dungeon;
 
 import org.junit.Before;
@@ -12,22 +18,38 @@ public class DungeonTest {
 
 	@Before
 	public void setUp() throws Exception {
-		dungeon = new Dungeon();
+		dungeon = new Dungeon(new BufferedReader(new FileReader(new File("levels/test1.lvl"))));
 	}
 
 	@Test
 	public void initialRoomIsEntrance() {
-		fail("Not yet implemented");
+		assertEquals("Entrance", dungeon.getPlayer().getCurrentRoom().getName());
 	}
 	
 	@Test
 	public void gameNotFinishedAtBeginning() {
-		assertFalse(dungeon.getPlayer().getCurrentRoom().getName().equals("Exit"));
+		assertNotEquals("Exit", dungeon.getPlayer().getCurrentRoom().getName());
 	}
 	
 	@Test
-	public void gameStartAtEntrance() {
-		assertFalse(dungeon.getPlayer().getCurrentRoom().getName().equals("Entrance"));
+	public void gameLooseInATrap() {
+		dungeon.interpretCommand("Go:Devant");
+		dungeon.interpretCommand("Go:Gauche");
+		assertTrue(dungeon.gameIsLost());
+	}
+	
+	@Test
+	public void gameWinnedInATrap() {
+		dungeon.interpretCommand("Go:Devant");
+		dungeon.interpretCommand("Go:Droite");
+		assertTrue(dungeon.gameIsWon());
+	}
+	
+	@Test
+	public void returnAtEntrance() {
+		dungeon.interpretCommand("Go:Devant");
+		dungeon.interpretCommand("Go:Derriere");
+		assertEquals("Entrance", dungeon.getPlayer().getCurrentRoom().getName());
 	}
 
 }
