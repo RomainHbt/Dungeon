@@ -12,4 +12,8 @@ public class Key extends Item{
 	public boolean canBeUsed(Door door){
 		return door == associatedDoor;
 	}
+	
+	public Door getDoor(){
+		return associatedDoor;
+	}
 }

@@ -1,22 +1,24 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import item.Key;
-import item.Potion;
+import map.Door;
+import map.Room;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import special.Inventory;
-
 
 public class ItemTest {
+	private Door door;
+	private Key key;
+	
 	@Before
 	public void setUp() throws Exception {
-		
+		door = new Door(new Room("room1"), new Room("room2"), "test", "key");
+		key = new Key(door);
 	}
 	
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void Keytest() {
+		assertEquals(door, key.getDoor());
 	}
-
 }

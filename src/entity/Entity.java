@@ -1,9 +1,11 @@
 package entity;
 
+import item.Weapon;
+
 import java.util.Random;
 
-import special.Inventory;
 import map.Room;
+import special.Inventory;
 
 public abstract class Entity{
 	private static Random rand;
@@ -41,14 +43,14 @@ public abstract class Entity{
 	 * Set attack on target
 	 * Use weapon if inventory include one
 	 * Normal attack is between 0-3 life point damage
-	 * Weapon attack is between 2-4 life point damage
+	 * Weapon attack is between 0-weapon efficiency life point damage
 	 * @param target
 	 */
 	public void attack(Entity target){
 		if(this.inventory.isEmpty()){
 			target.setDamage(rand.nextInt(4));
 		}else if(this.inventory.exist("Sword")){
-			target.setDamage(2 + rand.nextInt(3));
+			target.setDamage(rand.nextInt( ((Weapon)inventory.getItem("Wepon")).getEfficiency()) + 1);
 		}
 	}
 	
