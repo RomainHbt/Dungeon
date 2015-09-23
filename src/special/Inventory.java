@@ -42,4 +42,8 @@ public class Inventory{
 	public boolean isEmpty(){
 		return items.isEmpty();
 	}
+	
+	public void removeItem(String itemName){
+		items.remove(itemName);
+	}
 }
