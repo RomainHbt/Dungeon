@@ -15,11 +15,13 @@ public class Dungeon {
 	private List<Room> rooms;
 	private final Scanner scanner = new Scanner(System.in);
 	
-	public Dungeon(){
+	public Dungeon(BufferedReader file) throws NotConformFileException, IOException{
 		this.rooms = new ArrayList<Room>();
+		this.generateLevel(file);
+		this.player = new Player(this.getRoom("Entrance"), 10);
 	}
 	
-	public void generateLevel(BufferedReader file) throws NotConformFileException, IOException{
+	private void generateLevel(BufferedReader file) throws NotConformFileException, IOException{
 		String line = file.readLine();
 		if(!line.equals("# DUNGEON LEVEL CONFIG")){
 			throw new NotConformFileException();
@@ -51,7 +53,6 @@ public class Dungeon {
 	}
 
 	public void startGame(){
-		this.player = new Player(this.getRoom("Entrance"), 10);
 		do {
 			System.out.println("You are in "+ player.getCurrentRoom().getName());
 			System.out.println("What do you want to do?");
@@ -76,13 +77,18 @@ public class Dungeon {
 			case "Go":
 				if(parts.length >= 2){
 					Door direction = this.player.getCurrentRoom().getAccessibleRooms().get(parts[1]);
-					direction.go(this.player);
+					if(direction != null){
+						direction.go(this.player);
+					} else {
+						System.out.println("Unknown direction.");
+					}
+					
 				} else {
 					System.out.println("Please, give a direction.");
 				}
 				break;
 			default:
-				System.out.println("Unknown command");
+				System.out.println("Unknown command.");
 				break;
 		}
 		System.out.println("\n");

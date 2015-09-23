@@ -14,14 +14,14 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Dungeon dungeon = new Dungeon();
+		Dungeon dungeon;
 		try {
-			dungeon.generateLevel(new BufferedReader(new FileReader(new File("levels/test1.lvl"))));
+			dungeon = new Dungeon(new BufferedReader(new FileReader(new File("levels/test2.lvl"))));
+			//dungeon.showDungeon();
+			dungeon.startGame();
 		} catch (NotConformFileException | IOException e) {
 			e.printStackTrace();
 		}
-		//dungeon.showDungeon();
-		dungeon.startGame();
 	}
 
 }

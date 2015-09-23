@@ -20,7 +20,20 @@ public class Door {
 		if(p.getCurrentRoom() == this.exit){
 			p.setCurrentRoom(entrance);
 		} else {
-			p.setCurrentRoom(exit);
+			switch(type){
+				case "close":
+					if(false){
+						p.setCurrentRoom(exit);
+					} else {
+						System.out.println("You need a key to open de door !");
+					}
+				case "normal":
+					p.setCurrentRoom(exit);
+					break;
+				default:
+					p.setCurrentRoom(exit);
+					break;
+			}
 		}
 	}
 

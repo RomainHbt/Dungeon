@@ -50,7 +50,7 @@ public class Room {
 
 	@Override
 	public String toString() {
-		String res = "Room Name : "+this.name+"\n";
+		String res = "----------\nRoom Name : "+this.name+"\n";
 		res+= "Accessible doors :\n";
 		for (String door : this.accessibleRooms.keySet()) {
 			res += "\t- "+door+" -> "+this.accessibleRooms.get(door).getExit().getName()+"\n";
