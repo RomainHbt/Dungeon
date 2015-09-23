@@ -23,8 +23,7 @@ public class Inventory{
 	 * @param itemName
 	 */
 	public void takeItem(Inventory destination, String itemName){
-		destination.addItem(itemName, items.get(itemName));
-		items.remove(itemName);
+		destination.addItem(itemName, items.remove(itemName));
 	}
 	
 	public void addItem(String itemName, Item item){
