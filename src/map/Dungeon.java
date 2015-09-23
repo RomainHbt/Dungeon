@@ -1,5 +1,8 @@
 package map;
 
+import item.Factory;
+import item.Item;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,8 +39,17 @@ public class Dungeon {
 		
 		while((line = file.readLine()) != null){
 			if(line.charAt(0) == '#') continue;
+			if(line.charAt(0) == '-') break;
 			String[] parts = line.split(",");
-			Door d = new Door(this.getRoom(parts[0]), this.getRoom(parts[1]), parts[2], parts[3]);
+			new Door(parts[0], this.getRoom(parts[1]), this.getRoom(parts[1]), parts[2], parts[3]);
+		}
+		
+		while((line = file.readLine()) != null){
+			if(line.charAt(0) == '#') continue;
+			if(line.charAt(0) == '-') break;
+			String[] parts = line.split(",");
+			Item i = Factory.getItem(parts[2]);
+			
 		}
 	}
 	
@@ -86,6 +98,11 @@ public class Dungeon {
 				} else {
 					System.out.println("Please, give a direction.");
 				}
+				break;
+			case "Get":
+				String itemName = parts[1];
+				this.player.getCurrentRoom().getItems().takeItem(this.player.getInventory(), itemName);
+				System.out.println(itemName+" picked up !");
 				break;
 			default:
 				System.out.println("Unknown command.");

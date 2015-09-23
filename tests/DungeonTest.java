@@ -1,6 +1,6 @@
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,7 +39,7 @@ public class DungeonTest {
 	}
 	
 	@Test
-	public void gameWinnedInATrap() {
+	public void gameWinInATrap() {
 		dungeon.interpretCommand("Go:Devant");
 		dungeon.interpretCommand("Go:Droite");
 		assertTrue(dungeon.gameIsWon());

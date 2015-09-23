@@ -4,11 +4,13 @@ import entity.Player;
 
 public class Door {
 	
+	private String id;
 	private Room exit;
 	private Room entrance;
 	private String type;
 	
-	public Door(Room entrance, Room exit, String type, String position){
+	public Door(String id, Room entrance, Room exit, String type, String position){
+		this.id = id;
 		this.exit = exit;
 		this.entrance = entrance;
 		this.type = type;
@@ -22,7 +24,8 @@ public class Door {
 		} else {
 			switch(type){
 				case "close":
-					if(false){
+					if(p.getInventory().getItem("Cle de la porte") != null){
+						p.getInventory().removeItem("Cle de la porte");
 						p.setCurrentRoom(exit);
 					} else {
 						System.out.println("You need a key to open the door !");
@@ -36,6 +39,10 @@ public class Door {
 					break;
 			}
 		}
+	}
+	
+	public String getId(){
+		return id;
 	}
 
 	public Room getExit() {

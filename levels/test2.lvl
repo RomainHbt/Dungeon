@@ -1,11 +1,17 @@
 # DUNGEON LEVEL CONFIG
 # Rooms
+# Room Name
 Entrance
 Intersection
 Key Room
 Exit
 ------
 # Doors
-Entrance,Intersection,normal,Devant
-Intersection,Key Room,normal,Gauche
-Intersection,Exit,close,Droite
+#ID,Entrance Room,Exit Room, Door Type, Direction
+1,Entrance,Intersection,normal,Devant
+2,Intersection,Key Room,normal,Gauche
+3,Intersection,Exit,close,Droite
+------
+# Items
+#Item Name,Room Name,Item Type,Item Attribute
+Cle de la porte,Key Room,Key,3
