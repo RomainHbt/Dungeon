@@ -1,9 +1,15 @@
 package item;
 
+import map.Door;
+
 public class Key extends Item{
-	private Chest associatedChest;
+	private Door associatedDoor;
 	
-	public Key(Chest associatedChest){
-		this.associatedChest = associatedChest;
+	public Key(Door associatedDoor){
+		this.associatedDoor = associatedDoor;
+	}
+	
+	public boolean canBeUsed(Door door){
+		return door == associatedDoor;
 	}
 }
