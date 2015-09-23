@@ -8,6 +8,4 @@ public class Player extends Entity {
 		super(room, life);
 	}
 	
-	
-
 }
