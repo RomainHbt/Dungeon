@@ -16,4 +16,8 @@ public class Key extends Item{
 	public Door getDoor(){
 		return associatedDoor;
 	}
+	
+	public void setDoor(Door door){
+		this.associatedDoor = door;
+	}
 }

@@ -4,6 +4,7 @@ import item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Inventory{
 	private Map<String, Item> items;
@@ -44,5 +45,13 @@ public class Inventory{
 	
 	public void removeItem(String itemName){
 		items.remove(itemName);
+	}
+	
+	public String toString(){
+		String res = "";
+		for (String key : items.keySet()) {
+			res += key + "\t";
+		}
+		return res;
 	}
 }

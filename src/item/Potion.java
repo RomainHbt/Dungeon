@@ -1,17 +1,17 @@
 package item;
 
 public class Potion extends Item{
-	private Integer lifeRestored;
+	private int lifeRestored;
 	
-	public Potion(Integer lifeRestored){
+	public Potion(int lifeRestored){
 		this.lifeRestored = lifeRestored;
 	}
 	
-	public Integer getLifeRestored() {
+	public int getLifeRestored() {
 		return lifeRestored;
 	}
 
-	public void setLifeRestored(Integer lifeRestored) {
+	public void setLifeRestored(int lifeRestored) {
 		this.lifeRestored = lifeRestored;
 	}
 

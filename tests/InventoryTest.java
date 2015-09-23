@@ -22,7 +22,7 @@ public class InventoryTest {
 	@Test
 	public void addItem(){
 		inventory.addItem("potion", potion);
-		assertEquals(false, inventory.isEmpty());
+		assertFalse(inventory.isEmpty());
 	}
 	@Test
 	public void getItem() {
@@ -38,18 +38,18 @@ public class InventoryTest {
 	@Test
 	public void exist(){
 		inventory.addItem("test", new Potion(5));
-		assertEquals(true, inventory.exist("test"));
+		assertTrue(inventory.exist("test"));
 	}
 	
 	@Test
 	public void takeItem(){
 		inventory.takeItem(inventoryBis, "potion");
-		assertEquals(true, inventory.isEmpty());
+		assertTrue(inventory.isEmpty());
 	}
 	
 	@Test
 	public void remove(){
 		inventoryBis.removeItem("potion");
-		assertEquals(true, inventoryBis.isEmpty());
+		assertTrue(inventoryBis.isEmpty());
 	}
 }
