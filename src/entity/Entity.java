@@ -33,6 +33,10 @@ public abstract class Entity{
 		this.lifePoints = lifePoints;
 	}
 	
+	public Inventory getInventory(){
+		return this.inventory;
+	}
+	
 	/**
 	 * Set attack on target
 	 * Use weapon if inventory include one

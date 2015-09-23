@@ -91,7 +91,7 @@ public class Dungeon {
 				System.out.println("Unknown command.");
 				break;
 		}
-		System.out.println("\n");
+		System.out.println();
 	}
 	
 	public boolean gameIsFinished(){

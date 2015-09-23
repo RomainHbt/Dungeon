@@ -25,8 +25,9 @@ public class Door {
 					if(false){
 						p.setCurrentRoom(exit);
 					} else {
-						System.out.println("You need a key to open de door !");
+						System.out.println("You need a key to open the door !");
 					}
+					break;
 				case "normal":
 					p.setCurrentRoom(exit);
 					break;
