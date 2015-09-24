@@ -33,6 +33,12 @@ public class DungeonTest {
 	}
 	
 	@Test
+	public void movePlayer() {
+		dungeon.interpretCommand("Go:Devant");
+		assertEquals("Intersection", dungeon.getPlayer().getCurrentRoom().getName());
+	}
+	
+	@Test
 	public void gameLooseInATrap() {
 		dungeon.interpretCommand("Go:Devant");
 		dungeon.interpretCommand("Go:Gauche");

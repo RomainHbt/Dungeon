@@ -33,7 +33,7 @@ public class Dungeon {
 		while((line = file.readLine()) != null){
 			if(line.charAt(0) == '#') continue;
 			if(line.charAt(0) == '-') break;
-			Room r = new Room(line);
+			Room r = new Room(line.trim());
 			this.rooms.add(r);
 		}
 		
@@ -41,7 +41,7 @@ public class Dungeon {
 			if(line.charAt(0) == '#') continue;
 			if(line.charAt(0) == '-') break;
 			String[] parts = line.split(",");
-			new Door(parts[0], this.getRoom(parts[1]), this.getRoom(parts[2]), parts[3], parts[4]);
+			new Door(parts[0].trim(), this.getRoom(parts[1].trim()), this.getRoom(parts[2]), parts[3], parts[4]);
 		}
 		
 		while((line = file.readLine()) != null){
@@ -50,7 +50,7 @@ public class Dungeon {
 			String[] parts = line.split(",");
 
 			Item i = Item.getItem(parts[2], parts[3]);
-			
+			System.out.println(i);
 			this.getRoom(parts[1]).addItem(parts[0], i);
 		}
 	}
@@ -133,11 +133,5 @@ public class Dungeon {
 
 	public boolean gameIsWon(){
 		return player.getCurrentRoom().getName().equals("Exit");
-	}
-	
-	public void showDungeon(){
-		for(Room r : this.rooms){
-			System.out.println(r.toString());
-		}
 	}
 }

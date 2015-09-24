@@ -1,7 +1,9 @@
 package map;
 
-import item.Item;
 import item.Key;
+
+import java.util.List;
+
 import entity.Player;
 
 public class Door {
@@ -64,8 +66,8 @@ public class Door {
 	}
 	
 	private boolean haveKey(Player p){
-		
-		for(Key k : p.getInventory().getKeys()){
+		List<Key> keys = p.getInventory().getKeys();
+		for(Key k : keys){
 			System.out.println(k.toString());
 			if(k.canBeUsed(id)) return true;
 		}

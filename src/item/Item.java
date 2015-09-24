@@ -13,7 +13,7 @@ public abstract class Item {
 	 * @return The new Object on success or null if parameters are incorrect
 	 */
 	public static Item getItem(String itemName, String attribute){
-		switch(itemName){
+		switch(itemName.toLowerCase()){
 		case "key":
 			return new Key(attribute);
 		case "potion":
