@@ -28,9 +28,6 @@ public class ItemTest {
 	@Test
 	public void canBeUsed(){
 		assertTrue(key.canBeUsed(doorId));
-<<<<<<< HEAD
 		assertFalse(key.canBeUsed("5"));
-=======
->>>>>>> 0951c1160f92959036e84347e3e8455303a848b1
 	}
 }

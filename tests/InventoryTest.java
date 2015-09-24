@@ -17,8 +17,9 @@ public class InventoryTest {
 	public void setUp() throws Exception {
 		potionInventory = new Inventory();
 		emptyInventory = new Inventory();
-		potionInventory.addItem("potion", potion);
 		potion = new Potion(3);
+		potionInventory.addItem("potion", potion);
+
 	}
 	
 	@Test
@@ -29,6 +30,7 @@ public class InventoryTest {
 	
 	@Test
 	public void getItemTest() {
+		System.out.println(potionInventory.toString());
 		assertEquals(potion, potionInventory.getItem("potion"));
 	}
 	
@@ -40,6 +42,7 @@ public class InventoryTest {
 	@Test
 	public void existTest(){
 		assertTrue(potionInventory.exist("potion"));
+		assertFalse(emptyInventory.exist("potion"));
 	}
 	
 	@Test
