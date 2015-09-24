@@ -8,7 +8,7 @@ import map.Room;
 import special.Inventory;
 
 public abstract class Entity{
-	private static Random rand;
+	private final static Random rand = new Random();
 	private Room currentRoom;
 	private int lifePoints;
 	private Inventory inventory;
@@ -52,10 +52,10 @@ public abstract class Entity{
 	 * @param target
 	 */
 	public void attack(Entity target){
-		if(!this.inventory.exist("Sword")){
+		if(!this.inventory.exist("Weapon")){
 			target.setDamage(rand.nextInt(4));
 		}else{
-			target.setDamage(rand.nextInt( ((Weapon)inventory.getItem("Wepon")).getEfficiency()) + 1);
+			target.setDamage(rand.nextInt( ((Weapon)inventory.getItem("Weapon")).getEfficiency()) + 1);
 		}
 	}
 	

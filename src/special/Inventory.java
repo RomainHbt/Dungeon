@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Inventory{
 	private Map<String, Item> items;
@@ -78,9 +79,9 @@ public class Inventory{
 	 */
 	public List<Key> getKeys(){
 		List<Key> keyList = new ArrayList<>();
-		for (Item item : this.getValues()) {
-			if(item instanceof Key)
-				keyList.add((Key) item);
+		for (Entry entry : this.items.entrySet()) {
+			if(entry.getValue() instanceof Key)
+				keyList.add((Key) entry.getValue());
 		}
 		
 		return keyList;
