@@ -64,7 +64,9 @@ public class Door {
 	}
 	
 	private boolean haveKey(Player p){
+		
 		for(Key k : p.getInventory().getKeys()){
+			System.out.println(k.toString());
 			if(k.canBeUsed(id)) return true;
 		}
 		return false;
