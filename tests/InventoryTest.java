@@ -17,6 +17,7 @@ public class InventoryTest {
 	public void setUp() throws Exception {
 		potionInventory = new Inventory();
 		emptyInventory = new Inventory();
+		potionInventory.addItem("potion", potion);
 		potion = new Potion(3);
 	}
 	
@@ -59,6 +60,6 @@ public class InventoryTest {
 		assertEquals("potion", potionInventory.toString());
 		assertEquals("", emptyInventory.toString());
 		potionInventory.addItem("potion2", new Potion(4));
-		assertEquals("potion\tpotion", potionInventory.toString());
+		assertEquals("potion\tpotion2", potionInventory.toString());
 	}
 }

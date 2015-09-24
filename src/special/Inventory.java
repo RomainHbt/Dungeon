@@ -54,12 +54,15 @@ public class Inventory{
 		items.remove(itemName);
 	}
 	
+	/**
+	 * Generate a String with all names Item separate with \t
+	 */
 	public String toString(){
 		String res = "";
 		for (String key : items.keySet()) {
 			res += key + "\t";
 		}
-		return res;
+		return res.length()>0 ? res.substring(0, res.lastIndexOf('\t')) : res;
 	}
 	
 	/**
@@ -70,6 +73,9 @@ public class Inventory{
 		return this.items.values();
 	}
 	
+	/**
+	 * @return all the key of the inventory in a List
+	 */
 	public List<Key> getKeys(){
 		List<Key> keyList = new ArrayList<>();
 		for (Item item : this.getValues()) {

@@ -17,16 +17,17 @@ public class ItemTest {
 	@Before
 	public void setUp() throws Exception {
 		doorId = "3";
-		key = new Key("3");
+		key = new Key(doorId);
 	}
 	
 	@Test
 	public void Keytest() {
-		assertEquals(door, key.getDoorId());
+		assertEquals(doorId, key.getDoorId());
 	}
 	
 	@Test
 	public void canBeUsed(){
-		assertTrue(key.canBeUsed(door));
+		assertTrue(key.canBeUsed(doorId));
+		assertFalse(key.canBeUsed("5"));
 	}
 }

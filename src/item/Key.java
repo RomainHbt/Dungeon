@@ -1,6 +1,5 @@
 package item;
 
-import map.Door;
 
 public class Key extends Item{
 	private String associatedDoorId;
