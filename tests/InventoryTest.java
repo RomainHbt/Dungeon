@@ -30,7 +30,6 @@ public class InventoryTest {
 	
 	@Test
 	public void getItemTest() {
-		System.out.println(potionInventory.toString());
 		assertEquals(potion, potionInventory.getItem("potion"));
 	}
 	
