@@ -12,18 +12,30 @@ import entity.Player;
 import exception.NotConformFileException;
 
 public class Dungeon {
-	
+
 	private Player player;
 	private List<Room> rooms;
 	private List<Door> doors;
 	private final Scanner scanner = new Scanner(System.in);
 	
+	/**
+	 * Create and generate a Dungeon
+	 * @param file Configuration file for the generation
+	 * @throws NotConformFileException The configuration file is not conform (follow the pattern)
+	 * @throws IOException File not found
+	 */
 	public Dungeon(BufferedReader file) throws NotConformFileException, IOException{
 		this.rooms = new ArrayList<Room>();
 		this.generateLevel(file);
 		this.player = new Player(this.getRoom("Entrance"), 10);
 	}
 	
+	/**
+	 * Generate the level via the file
+	 * @param file Configuration file for the generation
+	 * @throws NotConformFileException The configuration file is not conform (follow the pattern)
+	 * @throws IOException File not found
+	 */
 	private void generateLevel(BufferedReader file) throws NotConformFileException, IOException{
 		String line = file.readLine();
 		if(!line.equals("# DUNGEON LEVEL CONFIG")){
@@ -50,7 +62,6 @@ public class Dungeon {
 			String[] parts = line.split(",");
 
 			Item i = Item.getItem(parts[2], parts[3]);
-			System.out.println(i);
 			this.getRoom(parts[1]).addItem(parts[0], i);
 		}
 	}
@@ -73,6 +84,9 @@ public class Dungeon {
 		return null;
 	}
 
+	/**
+	 * Launch the game
+	 */
 	public void startGame(){
 		do {
 			System.out.println("You are in "+ player.getCurrentRoom().getName());
@@ -89,6 +103,10 @@ public class Dungeon {
 		}
 	}
 	
+	/**
+	 * Interpret the command passed in argument
+	 * @param command Command to be treated
+	 */
 	public void interpretCommand(String command){
 		String[] parts = command.split(":");
 		switch(parts[0]){

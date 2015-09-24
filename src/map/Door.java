@@ -14,6 +14,14 @@ public class Door {
 	private String type;
 	private boolean unlocked;
 	
+	/**
+	 * Create a new Door
+	 * @param id Door's ID 
+	 * @param entrance Room where from we come
+	 * @param exit Room where from we go
+	 * @param type Door's type (normal, closed, hidden)
+	 * @param position Door's position in the entrance room
+	 */
 	public Door(String id, Room entrance, Room exit, String type, String position){
 		this.id = id;
 		this.exit = exit;
@@ -28,6 +36,10 @@ public class Door {
 		exit.addDoor("Derriere", this);
 	}
 	
+	/**
+	 * Move the player between two rooms
+	 * @param p Player
+	 */
 	public void go(Player p){
 		if(p.getCurrentRoom() == this.exit){
 			p.setCurrentRoom(entrance);
@@ -65,6 +77,11 @@ public class Door {
 		return type;
 	}
 	
+	/**
+	 * Test if the player have the key to open the door
+	 * @param p Player
+	 * @return true if the player have the key, false if not
+	 */
 	private boolean haveKey(Player p){
 		List<Key> keys = p.getInventory().getKeys();
 		for(Key k : keys){

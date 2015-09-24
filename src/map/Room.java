@@ -14,6 +14,10 @@ public class Room {
 	private Inventory items;
 	private String name;
 	
+	/**
+	 * Create a new Room
+	 * @param name Room's name
+	 */
 	public Room(String name){
 		this.name = name;
 		this.items = new Inventory();
@@ -36,10 +40,21 @@ public class Room {
 		return this.accessibleRooms.values();
 	}
 	
+	/**
+	 * Add an item in the room
+	 * @param name Item's name
+	 * @param i Item to be added
+	 */
 	public void addItem(String name, Item i){
 		items.addItem(name, i);
 	}
 	
+	/**
+	 * Add a door in the room
+	 * @param position Door's position in the room
+	 * @param door Door to be added
+	 * @return true if the door is added, false if not
+	 */
 	public boolean addDoor(String position, Door door){
 		return accessibleRooms.put(position, door) != null;
 	}
