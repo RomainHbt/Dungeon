@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 
 import map.Dungeon;
+import map.Room;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class DungeonTest {
 	public void setUp() throws Exception {
 		dungeon = new Dungeon(new BufferedReader(new FileReader(new File("levels/test1.lvl"))));
 	}
-
+	
 	@Test
 	public void initialRoomIsEntrance() {
 		assertEquals("Entrance", dungeon.getPlayer().getCurrentRoom().getName());
