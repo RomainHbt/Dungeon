@@ -83,7 +83,7 @@ public class Inventory{
 	 */
 	public List<Key> getKeys(){
 		List<Key> keyList = new ArrayList<>();
-		for (Entry entry : this.items.entrySet()) {
+		for (Entry<String, Item> entry : this.items.entrySet()) {
 			if(entry.getValue() instanceof Key)
 				keyList.add((Key) entry.getValue());
 		}

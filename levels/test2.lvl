@@ -8,10 +8,10 @@ Exit
 ------
 # Doors
 # ID,Entrance Room,Exit Room, Door Type, Direction
-1,Entrance,Intersection,normal,Devant
-2,Intersection,Key Room,normal,Gauche
-3,Intersection,Exit,close,Droite
+1, Entrance, Intersection, normal, Devant
+2, Intersection, Key Room, normal, Gauche
+3, Intersection, Exit, close, Droite
 ------
 # Items
 # Item Name,Room Name,Item Type,Item Attribute
-Cle,Key Room,Key,3
+Cle, Key Room, Key, 3
