@@ -52,22 +52,33 @@ public abstract class Entity{
 	 * @param target
 	 */
 	public void attack(Entity target){
-		if(this.inventory.isEmpty()){
+		if(!this.inventory.exist("Sword")){
 			target.setDamage(rand.nextInt(4));
-		}else if(this.inventory.exist("Sword")){
+		}else{
 			target.setDamage(rand.nextInt( ((Weapon)inventory.getItem("Wepon")).getEfficiency()) + 1);
 		}
 	}
 	
-	/**
-	 * 
-	 * @param lifeLost
-	 */
 	public void setDamage(int lifeLost){
 		this.lifePoints -= lifeLost;
 	}
 	
 	public boolean isAlive(){
 		return lifePoints > 0;
+	}
+	
+	/**
+	 * Make player fight against monster. The player begin attack.
+	 * @param player
+	 * @param monster
+	 * @return true if player win, false otherwise
+	 */
+	public static boolean fight(Entity player, Entity monster){
+		while(player.isAlive() && monster.isAlive()){
+			player.attack(monster);
+			if(monster.isAlive())
+				monster.attack(player);
+		}
+		return player.isAlive();
 	}
 }

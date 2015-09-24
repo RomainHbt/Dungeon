@@ -2,7 +2,6 @@ package item;
 
 
 public abstract class Item {
-	protected String attribute;
 	
 	/**
 	 * Make item by itemName and an attribute (efficiency to make weapon or the associated door to make a key)
