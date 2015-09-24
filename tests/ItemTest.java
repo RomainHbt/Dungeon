@@ -22,11 +22,11 @@ public class ItemTest {
 	
 	@Test
 	public void Keytest() {
-		assertEquals(door, key.getDoorId());
+		assertEquals(doorId, key.getDoorId());
 	}
 	
 	@Test
 	public void canBeUsed(){
-		assertTrue(key.canBeUsed(door));
+		assertTrue(key.canBeUsed(doorId));
 	}
 }
