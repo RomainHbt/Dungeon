@@ -11,18 +11,18 @@ import org.junit.Test;
 
 
 public class ItemTest {
-	private Door door;
+	private String doorId;
 	private Key key;
 	
 	@Before
 	public void setUp() throws Exception {
-		door = new Door(null, new Room("room1"), new Room("room2"), "test", "key");
-		key = new Key(door);
+		doorId = "3";
+		key = new Key("3");
 	}
 	
 	@Test
 	public void Keytest() {
-		assertEquals(door, key.getDoor());
+		assertEquals(door, key.getDoorId());
 	}
 	
 	@Test

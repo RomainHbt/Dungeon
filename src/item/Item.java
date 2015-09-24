@@ -1,8 +1,9 @@
 package item;
 
-import map.Door;
 
 public abstract class Item {
+	protected String attribute;
+	
 	/**
 	 * Make item by itemName and an attribute (efficiency to make weapon or the associated door to make a key)
 	 * To make key: itemName = "key", attribute = associatedDoor
@@ -12,14 +13,14 @@ public abstract class Item {
 	 * @param attribute The special value need to instantiate each class
 	 * @return The new Object on success or null if parameters are incorrect
 	 */
-	public static Item getItem(String itemName, Object attribute){
+	public static Item getItem(String itemName, String attribute){
 		switch(itemName){
 		case "key":
-			return new Key((Door) attribute);
+			return new Key(attribute);
 		case "potion":
-			return new Potion((int) attribute);
+			return new Potion(Integer.parseInt(attribute));
 		case "weapon":
-			return new Weapon((int) attribute);
+			return new Weapon(Integer.parseInt(attribute));
 			default:
 				return null;
 		}

@@ -1,9 +1,12 @@
 package special;
 
 import item.Item;
+import item.Key;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Inventory{
@@ -35,6 +38,10 @@ public class Inventory{
 		return items.get(itemName);
 	}
 	
+	/**
+	 * @param itemName The item you want to test.
+	 * @return true if the item is in the inventory, false otherwise.
+	 */
 	public boolean exist(String itemName){
 		return items.get(itemName) != null;
 	}
@@ -55,7 +62,21 @@ public class Inventory{
 		return res;
 	}
 	
+	/**
+	 * Use to have a Collection of all item in the inventory
+	 * @return A Collection of all item
+	 */
 	public Collection<Item> getValues(){
 		return this.items.values();
+	}
+	
+	public List<Key> getKeys(){
+		List<Key> keyList = new ArrayList<>();
+		for (Item item : this.getValues()) {
+			if(item instanceof Key)
+				keyList.add((Key) item);
+		}
+		
+		return keyList;
 	}
 }
