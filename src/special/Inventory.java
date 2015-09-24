@@ -17,6 +17,10 @@ public class Inventory{
 		items = new HashMap<>();
 	}
 	
+	/**
+	 * Build an Inventory with all object of items
+	 * @param items The list of object you want to add
+	 */
 	public Inventory(Map<String, Item> items) {
 		this.items = items;
 	}
@@ -24,8 +28,8 @@ public class Inventory{
 	/**
 	 * Move the item corresponding to itemName from this to destination
 	 * The item moved is remove from this
-	 * @param destination
-	 * @param itemName
+	 * @param destination The inventory you want to put the item
+	 * @param itemName The item you want to move
 	 */
 	public void takeItem(Inventory destination, String itemName){
 		destination.addItem(itemName, items.remove(itemName));

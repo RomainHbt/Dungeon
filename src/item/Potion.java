@@ -3,6 +3,10 @@ package item;
 public class Potion extends Item{
 	private int lifeRestored;
 	
+	/**
+	 * Build a new potion
+	 * @param lifeRestored The efficiency of the potion
+	 */
 	public Potion(int lifeRestored){
 		this.lifeRestored = lifeRestored;
 	}
