@@ -51,6 +51,7 @@ public class Room {
 		for (String door : this.accessibleRooms.keySet()) {
 			res += "\t- "+door+" -> "+this.accessibleRooms.get(door).getExit().getName()+"\n";
 		}
+		res+= "Items :\n" + this.items.toString();
 		return res;
 	}
 	

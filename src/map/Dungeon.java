@@ -1,6 +1,5 @@
 package map;
 
-import item.Factory;
 import item.Item;
 
 import java.io.BufferedReader;
@@ -16,6 +15,7 @@ public class Dungeon {
 	
 	private Player player;
 	private List<Room> rooms;
+	private List<Door> doors;
 	private final Scanner scanner = new Scanner(System.in);
 	
 	public Dungeon(BufferedReader file) throws NotConformFileException, IOException{
@@ -41,15 +41,17 @@ public class Dungeon {
 			if(line.charAt(0) == '#') continue;
 			if(line.charAt(0) == '-') break;
 			String[] parts = line.split(",");
-			new Door(parts[0], this.getRoom(parts[1]), this.getRoom(parts[1]), parts[2], parts[3]);
+			new Door(parts[0], this.getRoom(parts[1]), this.getRoom(parts[2]), parts[3], parts[4]);
 		}
 		
 		while((line = file.readLine()) != null){
 			if(line.charAt(0) == '#') continue;
 			if(line.charAt(0) == '-') break;
 			String[] parts = line.split(",");
-			Item i = Factory.getItem(parts[2]);
+
+			Item i = Item.getItem(parts[2], parts[3]);
 			
+			this.getRoom(parts[1]).addItem(parts[0], i);
 		}
 	}
 	
@@ -60,6 +62,13 @@ public class Dungeon {
 	public Room getRoom(String name){
 		for(Room r : rooms){
 			if(r.getName().equals(name)) return r;
+		}
+		return null;
+	}
+	
+	public Door getDoor(String id){
+		for(Door d : doors){
+			if(d.getId().equals(id)) return d;
 		}
 		return null;
 	}
@@ -83,6 +92,9 @@ public class Dungeon {
 	public void interpretCommand(String command){
 		String[] parts = command.split(":");
 		switch(parts[0]){
+			case "Inventory":
+				System.out.println("My inventory :\n"+this.player.getInventory().toString());
+				break;
 			case "Describe":
 				System.out.println(this.player.getCurrentRoom().toString());
 				break;

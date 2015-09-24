@@ -7,11 +7,11 @@ Key Room
 Exit
 ------
 # Doors
-#ID,Entrance Room,Exit Room, Door Type, Direction
+# ID,Entrance Room,Exit Room, Door Type, Direction
 1,Entrance,Intersection,normal,Devant
 2,Intersection,Key Room,normal,Gauche
 3,Intersection,Exit,close,Droite
 ------
 # Items
-#Item Name,Room Name,Item Type,Item Attribute
-Cle de la porte,Key Room,Key,3
+# Item Name,Room Name,Item Type,Item Attribute
+Cle,Key Room,Key,3

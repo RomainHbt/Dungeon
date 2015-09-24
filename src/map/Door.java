@@ -1,5 +1,7 @@
 package map;
 
+import item.Item;
+import item.Key;
 import entity.Player;
 
 public class Door {
@@ -8,12 +10,18 @@ public class Door {
 	private Room exit;
 	private Room entrance;
 	private String type;
+	private boolean unlocked;
 	
 	public Door(String id, Room entrance, Room exit, String type, String position){
 		this.id = id;
 		this.exit = exit;
 		this.entrance = entrance;
 		this.type = type;
+		if(type.equals("normal")){
+			this.unlocked = true;
+		} else {
+			this.unlocked = false;
+		}
 		entrance.addDoor(position, this);
 		exit.addDoor("Derriere", this);
 	}
@@ -22,21 +30,19 @@ public class Door {
 		if(p.getCurrentRoom() == this.exit){
 			p.setCurrentRoom(entrance);
 		} else {
-			switch(type){
-				case "close":
-					if(p.getInventory().getItem("Cle de la porte") != null){
-						p.getInventory().removeItem("Cle de la porte");
-						p.setCurrentRoom(exit);
-					} else {
-						System.out.println("You need a key to open the door !");
-					}
-					break;
-				case "normal":
-					p.setCurrentRoom(exit);
-					break;
-				default:
-					p.setCurrentRoom(exit);
-					break;
+			if(this.unlocked){
+				p.setCurrentRoom(exit);
+			} else {
+				switch(type){
+					case "close":
+						if(this.haveKey(p)){
+							this.unlocked = true;
+							p.setCurrentRoom(exit);
+						} else {
+							System.out.println("You need a key to open the door !");
+						}
+						break;
+				}
 			}
 		}
 	}
@@ -57,6 +63,11 @@ public class Door {
 		return type;
 	}
 	
-	
+	private boolean haveKey(Player p){
+		for(Key k : p.getInventory().getKeys()){
+			if(k.canBeUsed(id)) return true;
+		}
+		return false;
+	}
 
 }
