@@ -13,6 +13,11 @@ public abstract class Entity{
 	private int lifePoints;
 	private Inventory inventory;
 	
+	/**
+	 * Constructor of Entity
+	 * @param room The room where the player is
+	 * @param life The number of life point of the player
+	 */
 	public Entity(Room room, int life){
 		this.currentRoom = room;
 		this.lifePoints = life;
@@ -54,6 +59,10 @@ public abstract class Entity{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param lifeLost
+	 */
 	public void setDamage(int lifeLost){
 		this.lifePoints -= lifeLost;
 	}

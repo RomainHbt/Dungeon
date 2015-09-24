@@ -2,9 +2,9 @@ package special;
 
 import item.Item;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Inventory{
 	private Map<String, Item> items;
@@ -53,5 +53,9 @@ public class Inventory{
 			res += key + "\t";
 		}
 		return res;
+	}
+	
+	public Collection<Item> getValues(){
+		return this.items.values();
 	}
 }

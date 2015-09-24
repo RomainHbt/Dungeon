@@ -3,53 +3,62 @@ import static org.junit.Assert.fail;
 import item.Potion;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import special.Inventory;
 
 
 public class InventoryTest {
-	Inventory inventory, inventoryBis;
+	Inventory potionInventory, emptyInventory;
 	Potion potion;
 	
 	@Before
 	public void setUp() throws Exception {
-		inventory = new Inventory();
-		inventoryBis = new Inventory();
+		potionInventory = new Inventory();
+		emptyInventory = new Inventory();
 		potion = new Potion(3);
 	}
 	
 	@Test
-	public void addItem(){
-		inventory.addItem("potion", potion);
-		assertFalse(inventory.isEmpty());
-	}
-	@Test
-	public void getItem() {
-		inventory.addItem("potion", potion);
-		assertEquals(potion, inventory.getItem("potion"));
+	public void addItemTest(){
+		emptyInventory.addItem("potion", potion);
+		assertFalse(emptyInventory.isEmpty());
 	}
 	
 	@Test
-	public void isEmpty(){
-		assertEquals(true, new Inventory().isEmpty());
+	public void getItemTest() {
+		assertEquals(potion, potionInventory.getItem("potion"));
 	}
 	
 	@Test
-	public void exist(){
-		inventory.addItem("test", new Potion(5));
-		assertTrue(inventory.exist("test"));
+	public void isEmptyTest(){
+		assertTrue(emptyInventory.isEmpty());
 	}
 	
 	@Test
-	public void takeItem(){
-		inventory.takeItem(inventoryBis, "potion");
-		assertTrue(inventory.isEmpty());
+	public void existTest(){
+		assertTrue(potionInventory.exist("potion"));
 	}
 	
 	@Test
-	public void remove(){
-		inventoryBis.removeItem("potion");
-		assertTrue(inventoryBis.isEmpty());
+	public void takeItemTest(){
+		potionInventory.takeItem(emptyInventory, "potion");
+		assertTrue(potionInventory.isEmpty());
+		assertFalse(emptyInventory.isEmpty());
+	}
+	
+	@Test
+	public void removeTest(){
+		potionInventory.removeItem("potion");
+		assertTrue(potionInventory.isEmpty());
+	}
+	
+	@Test
+	public void toStringTest(){
+		assertEquals("potion", potionInventory.toString());
+		assertEquals("", emptyInventory.toString());
+		potionInventory.addItem("potion2", new Potion(4));
+		assertEquals("potion\tpotion", potionInventory.toString());
 	}
 }
