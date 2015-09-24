@@ -39,7 +39,7 @@ public class Dungeon {
 	private void generateLevel(BufferedReader file) throws NotConformFileException, IOException{
 		String line = file.readLine();
 		if(!line.equals("# DUNGEON LEVEL CONFIG")){
-			throw new NotConformFileException();
+			throw new NotConformFileException("The first line is not \"# DUNGEON LEVEL CONFIG\"");
 		}
 		
 		while((line = file.readLine()) != null){
@@ -53,7 +53,7 @@ public class Dungeon {
 			if(line.charAt(0) == '#') continue;
 			if(line.charAt(0) == '-') break;
 			String[] parts = line.split(",");
-			new Door(parts[0].trim(), this.getRoom(parts[1].trim()), this.getRoom(parts[2]), parts[3], parts[4]);
+			new Door(parts[0].trim(), this.getRoom(parts[1].trim()), this.getRoom(parts[2].trim()), parts[3].trim(), parts[4].trim());
 		}
 		
 		while((line = file.readLine()) != null){
@@ -61,8 +61,8 @@ public class Dungeon {
 			if(line.charAt(0) == '-') break;
 			String[] parts = line.split(",");
 
-			Item i = Item.getItem(parts[2], parts[3]);
-			this.getRoom(parts[1]).addItem(parts[0], i);
+			Item i = Item.getItem(parts[2].trim(), parts[3].trim());
+			this.getRoom(parts[1].trim()).addItem(parts[0].trim(), i);
 		}
 	}
 	

@@ -2,9 +2,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import item.Key;
-import item.Weapon;
-import map.Door;
-import map.Room;
 
 import org.junit.Before;
 import org.junit.Test;

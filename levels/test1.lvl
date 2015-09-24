@@ -6,6 +6,6 @@ Trap
 Exit
 ------
 # Doors
-1,Entrance,Intersection,normal,Devant
-2,Intersection,Trap,normal,Gauche
-3,Intersection,Exit,normal,Droite
+1, Entrance, Intersection, normal, Devant
+2, Intersection, Trap, normal, Gauche
+3, Intersection, Exit, normal, Droite
