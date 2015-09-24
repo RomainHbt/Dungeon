@@ -2,6 +2,7 @@ package special;
 
 import item.Item;
 import item.Key;
+import item.Potion;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import entity.Entity;
 
 public class Inventory{
 	private Map<String, Item> items;
@@ -83,11 +86,22 @@ public class Inventory{
 	 */
 	public List<Key> getKeys(){
 		List<Key> keyList = new ArrayList<>();
-		for (Entry entry : this.items.entrySet()) {
+		for (Entry<String, Item> entry : this.items.entrySet()) {
 			if(entry.getValue() instanceof Key)
 				keyList.add((Key) entry.getValue());
 		}
 		
 		return keyList;
+	}
+	
+	/**
+	 * Use the potion corresponding to the potionName. Restore potion.efficiency of the player's life
+	 * @param player The player you want to ill
+	 * @param potionName The name of the potion you want to use
+	 */
+	public void usePotion(Entity player, String potionName){
+		Potion potion = (Potion) items.get(potionName);
+		player.setLifePoints(player.getLifePoints() + potion.getLifeRestored());
+		items.remove(potionName);
 	}
 }

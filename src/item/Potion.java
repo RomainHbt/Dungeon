@@ -1,5 +1,6 @@
 package item;
 
+
 public class Potion extends Item{
 	private int lifeRestored;
 	
@@ -18,5 +19,4 @@ public class Potion extends Item{
 	public void setLifeRestored(int lifeRestored) {
 		this.lifeRestored = lifeRestored;
 	}
-
 }
