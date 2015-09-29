@@ -1,0 +1,19 @@
+# DUNGEON LEVEL CONFIG
+# Rooms
+# Room Name
+Entrance
+Monster Room
+Exit
+------
+# Doors
+# ID,Entrance Room,Exit Room, Door Type, Direction
+1, Entrance, Monster Room, normal, Devant
+2, Monster Room, Exit, normal, Devant
+------
+# Items
+# Item Name,Room Name,Item Type,Item Attribute
+Epee, Entrance, Weapon, 10
+------
+# Monsters
+# Room, Life points
+Monster Room, 10
