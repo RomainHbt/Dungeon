@@ -1,3 +1,7 @@
+/**
+ * The game's core class. This class interpret commands and manages the game
+ */
+
 package map;
 
 import item.Item;

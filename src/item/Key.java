@@ -1,3 +1,7 @@
+/**
+ * Class which represent a Key Item
+ */
+
 package item;
 
 

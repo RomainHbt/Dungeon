@@ -1,3 +1,7 @@
+/**
+ * Abstract class for game's items.
+ */
+
 package item;
 
 

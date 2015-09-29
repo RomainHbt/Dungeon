@@ -1,3 +1,7 @@
+/**
+ * A door is a link between two rooms. It could be a normal or a closed door (need a key)
+ */
+
 package map;
 
 import item.Key;

@@ -1,3 +1,7 @@
+/**
+ * Main class
+ */
+
 package main;
 
 import java.io.BufferedReader;
@@ -14,13 +18,16 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Dungeon dungeon;
-		try {
-			dungeon = new Dungeon(new BufferedReader(new FileReader(new File("levels/test3.lvl"))));
-			//dungeon.showDungeon();
-			dungeon.startGame();
-		} catch (NotConformFileException | IOException e) {
-			e.printStackTrace();
+		if(args.length == 0){
+			System.out.println("Please give a level file !");
+		} else {
+			Dungeon dungeon;
+			try {
+				dungeon = new Dungeon(new BufferedReader(new FileReader(new File(args[0]))));
+				dungeon.startGame();
+			} catch (NotConformFileException | IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

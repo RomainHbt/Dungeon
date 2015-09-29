@@ -1,3 +1,7 @@
+/**
+ * Exception throws when the level file is not conform
+ */
+
 package exception;
 
 public class NotConformFileException extends Exception{

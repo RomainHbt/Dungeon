@@ -1,3 +1,7 @@
+/**
+ * Abstract class for game's entities.
+ */
+
 package entity;
 
 import item.Item;

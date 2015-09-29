@@ -1,3 +1,7 @@
+/**
+ * Class which represent a Weapon Item
+ */
+
 package item;
 
 public class Weapon extends Item{

@@ -1,3 +1,7 @@
+/**
+ * This class represent the inventory of a room or the player. An inventory have items.
+ */
+
 package special;
 
 import item.Item;

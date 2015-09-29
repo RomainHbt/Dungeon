@@ -1,3 +1,6 @@
+/**
+ * Class which represent a Potion Item
+ */
 package item;
 
 

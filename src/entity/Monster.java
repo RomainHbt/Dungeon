@@ -1,3 +1,6 @@
+/**
+ * Class which represent a Monster Entity
+ */
 package entity;
 
 import map.Room;

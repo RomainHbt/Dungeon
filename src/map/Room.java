@@ -1,3 +1,7 @@
+/**
+ * Principal object for the dungeon. A room can have items, doors and a monster.
+ */
+
 package map;
 
 import item.Item;
@@ -82,7 +86,7 @@ public class Room {
 		}
 		res+= "Accessible doors :\n";
 		for (String door : this.accessibleRooms.keySet()) {
-			res += "\t- "+door+" -> "+this.accessibleRooms.get(door).getExit().getName()+"\n";
+			res += "\t- "+door+"\n";
 		}
 		res+= "Items :\n" + this.items.toString();
 		return res;

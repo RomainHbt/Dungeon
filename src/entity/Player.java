@@ -1,3 +1,6 @@
+/**
+ * Class which represent a Player Entity
+ */
 package entity;
 
 import map.Room;
