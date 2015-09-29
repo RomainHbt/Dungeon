@@ -67,7 +67,7 @@ public abstract class Entity{
 			target.setDamage(damagePoint);
 			System.out.println(this.getName()+" a enlever "+damagePoint+" point(s) de vie a "+ target.getName());
 		}else{
-			target.setDamage(rand.nextInt((Weapon) (weapon.getValue()).getEfficiency()) + 1);
+			//target.setDamage(rand.nextInt((Weapon) (weapon.getValue()).getEfficiency()) + 1);
 		}
 		
 		target.attack(this);
