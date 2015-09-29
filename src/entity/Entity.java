@@ -99,8 +99,8 @@ public abstract class Entity{
 			if(monster.isAlive())
 				monster.attack(player);
 		}
-		System.out.println(player.getName() + " has " + player.getLifePoints() + "life point.");
-		System.out.println(monster.getName() + " has " + monster.getLifePoints() + "life point.");
+		System.out.println(player.getName() + " has " + player.getLifePoints() + " life points.");
+		System.out.println(monster.getName() + " has " + monster.getLifePoints() + " life points.");
 		return player.isAlive();
 	}
 }

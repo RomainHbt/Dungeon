@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import entity.Entity;
 import entity.Monster;
 import entity.Player;
 import exception.NotConformFileException;
@@ -137,13 +138,10 @@ public class Dungeon {
 				break;
 			case "Fight":
 				if(playerRoom.haveMonster()){
-					this.player.attack(playerRoom.getMonster());
+					Entity.fight(getPlayer(), playerRoom.getMonster());
 					if(!playerRoom.getMonster().isAlive()){
 						System.out.println("The monster is dead !");
 						playerRoom.setMonster(null);
-					} else {
-						System.out.println("Monster Life Points : "+playerRoom.getMonster().getLifePoints());
-						System.out.println("Your Life Points : "+this.player.getLifePoints());
 					}
 				} else {
 					System.out.println("There is no monster in this room ...");
