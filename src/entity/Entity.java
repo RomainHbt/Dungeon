@@ -1,8 +1,10 @@
 package entity;
 
+import item.Item;
 import item.Weapon;
 
 import java.util.Random;
+import java.util.Map.Entry;
 
 import map.Room;
 import special.Inventory;
@@ -52,11 +54,14 @@ public abstract class Entity{
 	 * @param target
 	 */
 	public void attack(Entity target){
-		if(!this.inventory.exist("Weapon")){
+		Entry<String, Item> weapon = this.inventory.getWeapon();
+		if(weapon == null){
 			target.setDamage(rand.nextInt(4));
 		}else{
-			target.setDamage(rand.nextInt( ((Weapon)inventory.getItem("Weapon")).getEfficiency()) + 1);
+			//target.setDamage(rand.nextInt((Weapon) (weapon.getValue()).getEfficiency()) + 1);
 		}
+		
+		target.attack(this);
 	}
 	
 	public void setDamage(int lifeLost){

@@ -62,6 +62,6 @@ public class InventoryTest {
 		assertEquals("potion", potionInventory.toString());
 		assertEquals("", emptyInventory.toString());
 		potionInventory.addItem("potion2", new Potion(4));
-		assertEquals("potion\tpotion2", potionInventory.toString());
+		assertEquals("potion3\tpotion2\tpotion", potionInventory.toString());
 	}
 }

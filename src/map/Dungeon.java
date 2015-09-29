@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import entity.Monster;
 import entity.Player;
 import exception.NotConformFileException;
 
@@ -64,6 +65,15 @@ public class Dungeon {
 			Item i = Item.getItem(parts[2].trim(), parts[3].trim());
 			this.getRoom(parts[1].trim()).addItem(parts[0].trim(), i);
 		}
+		
+		while((line = file.readLine()) != null){
+			if(line.charAt(0) == '#') continue;
+			if(line.charAt(0) == '-') break;
+			String[] parts = line.split(",");
+
+			Monster m = new Monster(this.getRoom(parts[0].trim()), Integer.parseInt(parts[1].trim()));
+			this.getRoom(parts[0].trim()).setMonster(m);
+		}
 	}
 	
 	public Player getPlayer() {
@@ -109,29 +119,55 @@ public class Dungeon {
 	 */
 	public void interpretCommand(String command){
 		String[] parts = command.split(":");
+		String itemName = (parts.length == 1) ? null : parts[1];
+		Room playerRoom = this.player.getCurrentRoom();
 		switch(parts[0]){
 			case "Inventory":
 				System.out.println("My inventory :\n"+this.player.getInventory().toString());
 				break;
 			case "Describe":
-				System.out.println(this.player.getCurrentRoom().toString());
+				System.out.println(playerRoom.toString());
+				break;
+			case "Use":
+				if(this.player.getInventory().exist(itemName)){
+					this.player.getInventory().usePotion(this.player, itemName);
+				} else {
+					System.out.println("The item isn't in your inventory !");
+				}
+				break;
+			case "Fight":
+				if(playerRoom.haveMonster()){
+					this.player.attack(playerRoom.getMonster());
+					if(!playerRoom.getMonster().isAlive()){
+						System.out.println("The monster is dead !");
+						playerRoom.setMonster(null);
+					} else {
+						System.out.println("Monster Life Points : "+playerRoom.getMonster().getLifePoints());
+						System.out.println("Your Life Points : "+this.player.getLifePoints());
+					}
+				} else {
+					System.out.println("There is no monster in this room ...");
+				}
 				break;
 			case "Go":
-				if(parts.length >= 2){
-					Door direction = this.player.getCurrentRoom().getAccessibleRooms().get(parts[1]);
-					if(direction != null){
-						direction.go(this.player);
+				if(!playerRoom.haveMonster()){
+					if(parts.length >= 2){
+						Door direction = playerRoom.getAccessibleRooms().get(parts[1]);
+						if(direction != null){
+							direction.go(this.player);
+						} else {
+							System.out.println("Unknown direction.");
+						}
+						
 					} else {
-						System.out.println("Unknown direction.");
+						System.out.println("Please, give a direction.");
 					}
-					
 				} else {
-					System.out.println("Please, give a direction.");
+					System.out.println("There is a monster in this room, you can't move !");
 				}
 				break;
 			case "Get":
-				String itemName = parts[1];
-				this.player.getCurrentRoom().getItems().takeItem(this.player.getInventory(), itemName);
+				playerRoom.getItems().takeItem(this.player.getInventory(), itemName);
 				System.out.println(itemName+" picked up !");
 				break;
 			default:

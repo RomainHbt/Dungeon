@@ -7,12 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import special.Inventory;
+import entity.Monster;
 
 public class Room {
 
 	private Map<String, Door> accessibleRooms;
 	private Inventory items;
 	private String name;
+	private Monster monster;
 	
 	/**
 	 * Create a new Room
@@ -22,6 +24,7 @@ public class Room {
 		this.name = name;
 		this.items = new Inventory();
 		this.accessibleRooms = new HashMap<>();
+		this.monster = null;
 	}
 
 	public Map<String, Door> getAccessibleRooms() {
@@ -36,6 +39,18 @@ public class Room {
 		return name;
 	}
 	
+	public Monster getMonster() {
+		return monster;
+	}
+
+	public void setMonster(Monster monster) {
+		this.monster = monster;
+	}
+	
+	public boolean haveMonster(){
+		return monster != null;
+	}
+
 	public Collection<Door> listDoors(){
 		return this.accessibleRooms.values();
 	}
@@ -62,6 +77,9 @@ public class Room {
 	@Override
 	public String toString() {
 		String res = "----------\nRoom Name : "+this.name+"\n";
+		if(this.haveMonster()){
+			res += "There is a Monster in this room !\n";
+		}
 		res+= "Accessible doors :\n";
 		for (String door : this.accessibleRooms.keySet()) {
 			res += "\t- "+door+" -> "+this.accessibleRooms.get(door).getExit().getName()+"\n";

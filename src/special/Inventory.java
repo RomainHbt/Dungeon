@@ -3,6 +3,7 @@ package special;
 import item.Item;
 import item.Key;
 import item.Potion;
+import item.Weapon;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -92,6 +93,18 @@ public class Inventory{
 		}
 		
 		return keyList;
+	}
+	
+	/**
+	 * @return true if the player have weapon in her inventory, false if not
+	 */
+	public Entry<String, Item> getWeapon(){
+		for (Entry<String, Item> entry : this.items.entrySet()) {
+			if(entry.getValue() instanceof Key)
+				return entry;
+		}
+		
+		return null;
 	}
 	
 	/**

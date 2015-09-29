@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String[] args) {
 		Dungeon dungeon;
 		try {
-			dungeon = new Dungeon(new BufferedReader(new FileReader(new File("levels/test2.lvl"))));
+			dungeon = new Dungeon(new BufferedReader(new FileReader(new File("levels/test3.lvl"))));
 			//dungeon.showDungeon();
 			dungeon.startGame();
 		} catch (NotConformFileException | IOException e) {
