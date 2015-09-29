@@ -1,24 +1,30 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import item.Item;
 import item.Potion;
+import item.Weapon;
+
+import java.util.Map.Entry;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import special.Inventory;
+import entity.Entity;
+import entity.Player;
 
 
 public class InventoryTest {
-	Inventory potionInventory, emptyInventory;
+	Inventory inventory, emptyInventory;
 	Potion potion;
 	
 	@Before
 	public void setUp() throws Exception {
-		potionInventory = new Inventory();
+		inventory = new Inventory();
 		emptyInventory = new Inventory();
 		potion = new Potion(3);
-		potionInventory.addItem("potion", potion);
+		inventory.addItem("potion", potion);
 
 	}
 	
@@ -30,7 +36,7 @@ public class InventoryTest {
 	
 	@Test
 	public void getItemTest() {
-		assertEquals(potion, potionInventory.getItem("potion"));
+		assertEquals(potion, inventory.getItem("potion"));
 	}
 	
 	@Test
@@ -40,28 +46,36 @@ public class InventoryTest {
 	
 	@Test
 	public void existTest(){
-		assertTrue(potionInventory.exist("potion"));
+		assertTrue(inventory.exist("potion"));
 		assertFalse(emptyInventory.exist("potion"));
 	}
 	
 	@Test
 	public void takeItemTest(){
-		potionInventory.takeItem(emptyInventory, "potion");
-		assertTrue(potionInventory.isEmpty());
+		inventory.takeItem(emptyInventory, "potion");
+		assertTrue(inventory.isEmpty());
 		assertFalse(emptyInventory.isEmpty());
 	}
 	
 	@Test
 	public void removeTest(){
-		potionInventory.removeItem("potion");
-		assertTrue(potionInventory.isEmpty());
+		inventory.removeItem("potion");
+		assertTrue(inventory.isEmpty());
 	}
 	
 	@Test
-	public void toStringTest(){
-		assertEquals("potion", potionInventory.toString());
-		assertEquals("", emptyInventory.toString());
-		potionInventory.addItem("potion2", new Potion(4));
-		assertEquals("potion3\tpotion2\tpotion", potionInventory.toString());
+	public void usePotionTest(){
+		Entity player = new Player(null, 10, null);
+		inventory.usePotion(player, "potion");
+		assertTrue(player.getLifePoints() > 10);
+		assertEquals(null, inventory.getItem("potion"));
+	}
+	
+	@Test
+	public void getWeaponTest(){
+		Item weapon = new Weapon(5);
+		inventory.addItem("weapon", weapon);
+		Entry<String, Item> entry = inventory.getWeapon();
+		assertTrue(entry.getValue() instanceof Weapon);
 	}
 }

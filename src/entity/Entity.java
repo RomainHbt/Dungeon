@@ -53,24 +53,26 @@ public abstract class Entity{
 	}
 	
 	/**
-	 * Set attack on target
+	 * Do attack on target
 	 * Use weapon if inventory include one
 	 * Normal attack is between 0-3 life point damage
 	 * Weapon attack is between 0-weapon efficiency life point damage
 	 * @param target
 	 */
-	public void attack(Entity target){
+	public int attack(Entity target){
 		Entry<String, Item> weapon = this.inventory.getWeapon();
 		int damagePoint = 0;
 		if(weapon == null){
 			damagePoint = rand.nextInt(4);
 			target.setDamage(damagePoint);
-			System.out.println(this.getName()+" a enlever "+damagePoint+" point(s) de vie a "+ target.getName());
+			System.out.println(this.getName()+" has removed "+damagePoint+" life(s) point to "+ target.getName()+".");
 		}else{
-			//target.setDamage(rand.nextInt((Weapon) (weapon.getValue()).getEfficiency()) + 1);
+			damagePoint = rand.nextInt( ((Weapon) (weapon.getValue())).getEfficiency()) + 1;
+			target.setDamage(damagePoint);
+			System.out.println(this.getName()+" has removed "+damagePoint+" life(s) point to "+ target.getName()+".");
 		}
 		
-		target.attack(this);
+		return damagePoint;
 	}
 	
 	public void setDamage(int lifeLost){
@@ -97,8 +99,8 @@ public abstract class Entity{
 			if(monster.isAlive())
 				monster.attack(player);
 		}
-		System.out.println(player.getName() + " a " + player.getLifePoints() + "point(s) de vie.");
-		System.out.println(monster.getName() + " a " + monster.getLifePoints() + "point(s) de vie.");
+		System.out.println(player.getName() + " has " + player.getLifePoints() + "life point.");
+		System.out.println(monster.getName() + " has " + monster.getLifePoints() + "life point.");
 		return player.isAlive();
 	}
 }

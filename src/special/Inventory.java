@@ -100,10 +100,9 @@ public class Inventory{
 	 */
 	public Entry<String, Item> getWeapon(){
 		for (Entry<String, Item> entry : this.items.entrySet()) {
-			if(entry.getValue() instanceof Key)
+			if(entry.getValue() instanceof Weapon)
 				return entry;
 		}
-		
 		return null;
 	}
 	

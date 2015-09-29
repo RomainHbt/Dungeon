@@ -17,18 +17,14 @@ public class EntityTest {
 	public void setUp() throws Exception {
 		player = new Player(null, 10, "player");
 		monster = new Monster(null, 10, "monster");
+		player.getInventory().addItem("weapon", new Weapon(5));
 	}
 
 	@Test
-	public void fightTest() {
-		Entity.fight(player, monster);
-		assertTrue( (player.isAlive() && !monster.isAlive()) || (!player.isAlive() && monster.isAlive()));
-	}
-	
-	@Test
-	public void weaponFightTest(){
-		player.getInventory().addItem("Weapon", new Weapon(7));
-		Entity.fight(player, monster);
-		assertTrue( (player.isAlive() && !monster.isAlive()) || (!player.isAlive() && monster.isAlive()));
+	public void attackTest(){
+		int damage = player.attack(monster);
+		assertEquals(damage, 10 - monster.getLifePoints());
+		damage = monster.attack(player);
+		assertEquals(damage, 10 - player.getLifePoints());
 	}
 }
