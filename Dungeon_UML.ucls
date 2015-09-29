@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="item.Key" project="Dungeon" file="/Dungeon/src/item/Key.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-62" y="280"/>    
+    <position height="-1" width="-1" x="-85" y="287"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="map.Door" project="Dungeon" file="/Dungeon/src/map/Door.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-38" y="539"/>    
+    <position height="-1" width="-1" x="-62" y="551"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="main.Main" project="Dungeon" file="/Dungeon/src/main/Main.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="859" y="820"/>    
+    <position height="-1" width="-1" x="893" y="893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="exception.NotConformFileException" project="Dungeon" 
     file="/Dungeon/src/exception/NotConformFileException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="822" y="999"/>    
+    <position height="-1" width="-1" x="860" y="1025"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -187,7 +187,7 @@
     <bendpoint x="228" y="479"/>    
     <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="36" name="accessibleRooms">        
-        <position height="18" width="93" x="116" y="462"/>      
+        <position height="18" width="93" x="92" y="474"/>      
       </attribute>      
       <multiplicity id="37" minimum="0" maximum="2147483647"/>    
     </end>    
@@ -198,7 +198,7 @@
     <end type="SOURCE" refId="11" navigable="false">      
       <attribute id="39" name="doors"/>      
       <multiplicity id="40" minimum="0" maximum="2147483647">        
-        <position height="16" width="21" x="69" y="690"/>      
+        <position height="16" width="21" x="45" y="702"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
