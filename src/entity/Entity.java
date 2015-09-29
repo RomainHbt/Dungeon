@@ -11,6 +11,7 @@ import special.Inventory;
 
 public abstract class Entity{
 	private final static Random rand = new Random();
+	private String name;
 	private Room currentRoom;
 	private int lifePoints;
 	private Inventory inventory;
@@ -20,10 +21,11 @@ public abstract class Entity{
 	 * @param room The room where the player is
 	 * @param life The number of life point of the player
 	 */
-	public Entity(Room room, int life){
+	public Entity(Room room, int life, String entityName){
 		this.currentRoom = room;
 		this.lifePoints = life;
 		this.inventory = new Inventory();
+		this.name = entityName;
 	}
 
 	public Room getCurrentRoom() {
@@ -46,6 +48,10 @@ public abstract class Entity{
 		return this.inventory;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	/**
 	 * Set attack on target
 	 * Use weapon if inventory include one
@@ -55,10 +61,13 @@ public abstract class Entity{
 	 */
 	public void attack(Entity target){
 		Entry<String, Item> weapon = this.inventory.getWeapon();
+		int damagePoint = 0;
 		if(weapon == null){
-			target.setDamage(rand.nextInt(4));
+			damagePoint = rand.nextInt(4);
+			target.setDamage(damagePoint);
+			System.out.println(this.getName()+" a enlever "+damagePoint+" point(s) de vie a "+ target.getName());
 		}else{
-			//target.setDamage(rand.nextInt((Weapon) (weapon.getValue()).getEfficiency()) + 1);
+			target.setDamage(rand.nextInt((Weapon) (weapon.getValue()).getEfficiency()) + 1);
 		}
 		
 		target.attack(this);
@@ -68,22 +77,28 @@ public abstract class Entity{
 		this.lifePoints -= lifeLost;
 	}
 	
+	/**
+	 * Check if entity still have life point
+	 * @return true if this entity have more than 0 life point, false otherwise
+	 */
 	public boolean isAlive(){
 		return lifePoints > 0;
 	}
 	
 	/**
-	 * Make player fight against monster. The player begin attack.
+	 * Make player fight against monster. They each play once and player start the fight
 	 * @param player
 	 * @param monster
-	 * @return true if player win, false otherwise
+	 * @return true while player is alive
 	 */
 	public static boolean fight(Entity player, Entity monster){
-		while(player.isAlive() && monster.isAlive()){
+		if(monster.isAlive() && player.isAlive()){
 			player.attack(monster);
 			if(monster.isAlive())
 				monster.attack(player);
 		}
+		System.out.println(player.getName() + " a " + player.getLifePoints() + "point(s) de vie.");
+		System.out.println(monster.getName() + " a " + monster.getLifePoints() + "point(s) de vie.");
 		return player.isAlive();
 	}
 }

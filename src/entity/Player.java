@@ -4,8 +4,8 @@ import map.Room;
 
 public class Player extends Entity {
 
-	public Player(Room room, int life) {
-		super(room, life);
+	public Player(Room room, int life, String name) {
+		super(room, life, name);
 	}
 	
 }

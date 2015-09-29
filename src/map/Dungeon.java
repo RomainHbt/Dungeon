@@ -28,7 +28,7 @@ public class Dungeon {
 	public Dungeon(BufferedReader file) throws NotConformFileException, IOException{
 		this.rooms = new ArrayList<Room>();
 		this.generateLevel(file);
-		this.player = new Player(this.getRoom("Entrance"), 10);
+		this.player = new Player(this.getRoom("Entrance"), 10, "Joueur");
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class Dungeon {
 			if(line.charAt(0) == '-') break;
 			String[] parts = line.split(",");
 
-			Monster m = new Monster(this.getRoom(parts[0].trim()), Integer.parseInt(parts[1].trim()));
+			Monster m = new Monster(this.getRoom(parts[0].trim()), Integer.parseInt(parts[1].trim()), "Monstre");
 			this.getRoom(parts[0].trim()).setMonster(m);
 		}
 	}

@@ -15,8 +15,8 @@ public class EntityTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		player = new Player(null, 10);
-		monster = new Monster(null, 10);
+		player = new Player(null, 10, "player");
+		monster = new Monster(null, 10, "monster");
 	}
 
 	@Test
