@@ -37,57 +37,57 @@ Les classes "Entity" et "Item" sont des classes abstaites générales pour repr�
 
 Le code ci-dessous est la construction d'un niveau en fonction d'un fichier de configuration passé en paramètre. Le fichier doit respecter une certaine norme.
 
-private void generateLevel(BufferedReader file) throws NotConformFileException, IOException{
-  	String line = file.readLine();
-	//Vérification de la première ligne du fichier
-	if(!line.equals("# DUNGEON LEVEL CONFIG")){
-	  	 throw new NotConformFileException("The first line is not \"# DUNGEON LEVEL CONFIG\"");
-	}
+	private void generateLevel(BufferedReader file) throws NotConformFileException, IOException{
+	  	String line = file.readLine();
+		//Vérification de la première ligne du fichier
+		if(!line.equals("# DUNGEON LEVEL CONFIG")){
+		  	 throw new NotConformFileException("The first line is not \"# DUNGEON LEVEL CONFIG\"");
+		}
+		
+		//Création des pièces
+		while((line = file.readLine()) != null){
+			if(line.charAt(0) == '#') continue;
+			if(line.charAt(0) == '-') break;
+			Room r = new Room(line.trim());
+			this.rooms.add(r);
+		}
+		
+		//Création des portes	
+		while((line = file.readLine()) != null){
+			[...]
+			String[] parts = line.split(",");
+			new Door(parts[0].trim(), this.getRoom(parts[1].trim()), this.getRoom(parts[2].trim()), parts[3].trim(), parts[4].trim());
+		}
+		
+		//Création et ajout des items dans les pièces
+		while((line = file.readLine()) != null){
+			[...]
+			String[] parts = line.split(",");
 	
-	//Création des pièces
-	while((line = file.readLine()) != null){
-		if(line.charAt(0) == '#') continue;
-		if(line.charAt(0) == '-') break;
-		Room r = new Room(line.trim());
-		this.rooms.add(r);
+			Item i = Item.getItem(parts[2].trim(), parts[3].trim());
+			this.getRoom(parts[1].trim()).addItem(parts[0].trim(), i);
+		}
+		
+		//Création et ajout des montres dans les pièces	
+		while((line = file.readLine()) != null){
+			[...]
+			// Split et création d'une instance de Monster
+			this.getRoom(parts[0].trim()).setMonster(m);
+		}
 	}
-	
-	//Création des portes	
-	while((line = file.readLine()) != null){
-		[...]
-		String[] parts = line.split(",");
-		new Door(parts[0].trim(), this.getRoom(parts[1].trim()), this.getRoom(parts[2].trim()), parts[3].trim(), parts[4].trim());
-	}
-	
-	//Création et ajout des items dans les pièces
-	while((line = file.readLine()) != null){
-		[...]
-		String[] parts = line.split(",");
-
-		Item i = Item.getItem(parts[2].trim(), parts[3].trim());
-		this.getRoom(parts[1].trim()).addItem(parts[0].trim(), i);
-	}
-	
-	//Création et ajout des montres dans les pièces	
-	while((line = file.readLine()) != null){
-		[...]
-		// Split et création d'une instance de Monster
-		this.getRoom(parts[0].trim()).setMonster(m);
-	}
-}
 
 La fonction ci-dessous est l'utilisation d'un desgn pattern appelé Factory. Il sert à instancier un objet en passant juste le nom de l'objet en argument.
 
-public static Item getItem(String itemName, String attribute){
-  	//Le switch sert à retourner la bonne instance d'objet avec le bon attribut
-	switch(itemName.toLowerCase()){
-		case "key":
-			return new Key(attribute);
-		case "potion":
-			return new Potion(Integer.parseInt(attribute));
-		case "weapon":
-			return new Weapon(Integer.parseInt(attribute));
-		default:
-			return null;
+	public static Item getItem(String itemName, String attribute){
+	  	//Le switch sert à retourner la bonne instance d'objet avec le bon attribut
+		switch(itemName.toLowerCase()){
+			case "key":
+				return new Key(attribute);
+			case "potion":
+				return new Potion(Integer.parseInt(attribute));
+			case "weapon":
+				return new Weapon(Integer.parseInt(attribute));
+			default:
+				return null;
+		}
 	}
-}
